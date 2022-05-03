@@ -1,0 +1,14 @@
+TAD GRAFO 
+
+datos mínimos:
+  -vertices, vector de plantilla, representa a los vertices del grafo
+  -aristas, vector de vectores de parejas, representa a los indices y costo de conexión del grafo
+Operaciones: 
+  -cantVertices(), retorna la cantidad de vértices en el grafo
+  -cantAristas (), retorna la cantidad de aristas en el grafo
+  -buscarVertices(T vert), retorna la posición del vértice si existe en el grafo y si no retorna -1
+  -insertarVertice ( T vert ), inserta un vértice en el grafo y retorna un dato en falso si no se pudo
+  -insertarArista( T ori, T des, U cos ), inserta una arista en el grafo y retorna un dato en falso si no se pudo
+  -buscarArista(T ori, T des), retorna la posición de la arista si existe en el grafo y si no retorna -1
+  -eliminarVertice(T vert), elimina un vértice del grafo 
+  -eliminarArista(T ori, T des),elimina un vértice del grafo  

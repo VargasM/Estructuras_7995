@@ -1,0 +1,14 @@
+Santiago Camacho
+TAD Grafo
+Conjunto mínimo de Datos;
+-	Vértices, vector, vértices que pertenecen al grafo
+-	Aristas, vector de vectores de pares, conexiones entre vértices del grafo
+Operaciones:
+-	Grafo(), inicializa el grafo
+-	cantidadAristas(), cuenta las aristas del grafo
+-	buscarVertice(T vertice), busca vertice dentro del grafo
+-	insertarVertice(T vertice), inserta vertice dentro del grafo
+-	insertarArista(T ori, T des, U cos), inserta una nueva arista dentro del grafo con los datos ori, des y cos
+-	buscarArista(T ori, T des), busca la arista con los datos ori y des
+-	eliminarArista(T ori, T des), elimina la arista con los datos ori y des
+-	eliminarVertice(T vertice), elimina vertice dentro del grafo

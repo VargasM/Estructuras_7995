@@ -28,8 +28,7 @@ int main()
         cout << "7) buscar arista \n";
         cout << "8) ver cantidad de vertices \n";
         cout << "9) ver cantidad de aristas \n";
-        cout << "10) mostrar grafo \n";
-        cout << "11) SALIR\n";
+        cout << "10) SALIR\n";
         cout << "\nIngrese la opcion: ";
         cin >> opcion;
         switch (opcion)
@@ -91,9 +90,6 @@ int main()
                 cout << "- Cantidad de aristas: " << G.cantidadAristas() << endl;
                 break;
             case 10:
-                G.mostrarGrafo();
-                break;
-            case 11:
                 cout << endl;
                 cout << "\n- Seguro que quiere salir?(SI=1)(NO=0) :";
                 cin >> opcion2;

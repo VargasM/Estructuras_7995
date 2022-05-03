@@ -133,21 +133,4 @@ bool Grafo<T, V>::eliminarArista(V n_ori, V n_des)
     return res;
 }
 
-template <class T, class V>
-void Grafo<T,V>::mostrarGrafo()
-{
-    for (int i = 0; i < cantidadVertices(); ++i)
-    {
-        cout << vertices[i] << "-> ";
-        vector<pair<int, V>> n_aris = aristas[i];
-        for (int j = 0; j < n_aris.size(); j++)
-        {
-            pair<int, V> temp = n_aris[j];
-            cout << vertices[temp.first] << " " << temp.first << " " << temp.second << ", ";
-        }
-        cout << endl;
-    }
-    cout << endl;
-}
-
 

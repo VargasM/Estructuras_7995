@@ -25,7 +25,6 @@ public:
     bool insertarArista (T n_ori, T n_des, V val);
     bool eliminarVertice(T n_ver);
     bool eliminarArista(V n_ori, V n_des);
-    void mostrarGrafo();
 };
 
 #include "TADGRAFOSACTUALIZADOS.HXX"

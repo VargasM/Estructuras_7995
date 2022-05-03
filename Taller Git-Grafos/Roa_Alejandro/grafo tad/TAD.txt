@@ -1,0 +1,17 @@
+
+ TAD Grafo 
+ conjunto minimo de datos:
+ -vertices, vector de tipo plantilla, contenedor de los vertices
+ -aristas, vector de parejas de un entero y tipo plantilla, contiene las aristas y su costo
+ comportamientos:
+ + grafo(), constructor
+ + cantivertices(), retorna la cantidad de vertices del grafo.
+ + cantiaristas(), retorna la cantida de aristas del grafo.
+ +  int buscarVertice (T vert),busca un vertice.
+ +  bool insertarVertice ( T vert ),inserta un vertice.
+ +  bool insertarArista( T ori, T des, U cos ), inserta una aerista con su origen, destino y costo.
+ +  U buscarArista (T ori, T des), busca una arista.
+ +  bool eliminarVertice(T vert), elimina un vertice.
+ +  bool eliminarArista(T ori, T des),elimina una arista.
+
+ 

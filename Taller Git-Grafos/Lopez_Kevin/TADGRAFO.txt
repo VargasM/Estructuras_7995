@@ -1,0 +1,14 @@
+TAD Grafo
+Datos minimos: 
+	-vertices, vector de vertices de tipo plantilla
+   	-aristas,	multivector que contiene los vertices, susaristas y el costo de conexión de cada arsita
+
+Operaciones: 
+	- cantVertices(), retorna el número de vertices actuales
+    - cantAristas(), retorna el número de aristas actuales
+    - buscarVertice( vertice), retorna el indice del vertice si existe, si no retorna -1
+    - insertarVertice( vertice), inserta un vertice en el contenedor de vertices
+    - insertarArista( ori, des,  cos), inserta una arista en el contenedor de aristas
+    - buscarArista(ori, des), retorna el costos de conexión del vertice si existe, si no retorna -1
+    - eliminarVertice( vertice), elimina un vertice dado del contenedor de vertices
+    - eliminarArista(ori,  des), elimina una arista dada del contenedor de arsitas

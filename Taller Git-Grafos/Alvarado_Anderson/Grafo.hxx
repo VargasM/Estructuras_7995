@@ -242,3 +242,51 @@ void Grafo<T, C>::recorridoBFS(T vOrigen)
     else
         cout << "El vertice no existe" << endl;
 }
+// algoritmo de prim
+template <class T, class C>
+int Grafo<T, C>::prim(T vOrigen){
+    
+    int suma = 0;
+    int nodo = buscarVertice(vOrigen);
+    
+
+    if (nodo != -1)
+    {    
+        vector <bool> visitados;
+        visitados.resize(cantVertices());
+
+        struct compare {
+	        public: 
+	            bool operator()(pair<int, int> x, pair<int, int>y)
+                {
+                    return x.first > y.first;
+                }
+        };
+        priority_queue<pair<int, int>, vector <pair<int, int>>, compare> cola; //  costo,  indice vertice
+        cola.push({0,nodo});
+
+        while(!cola.empty())
+        {
+            pair<int, int> curr =  cola.top();
+            cola.pop();
+            if(!visitados[curr.second])
+            {
+                cout <<  "vertice: "<< vertices[curr.second] << ", peso: " << curr.first<<endl;
+
+                visitados[curr.second] = true;
+                suma += curr.first;
+
+                vector<pair<int, int>> aux = aristas[curr.second];
+                for(int j = 0; j<aux.size(); ++j)
+                {
+                    pair<int, C> temp = aux[j];
+                    cola.push({temp.second, temp.first});
+                }    
+            }   
+        }
+    }
+    else
+        cout << "El vertice no existe" << endl;
+
+    return suma;
+}

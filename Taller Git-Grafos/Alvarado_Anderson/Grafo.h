@@ -33,6 +33,7 @@ public:
     void recorridoDFS(T inicio);
     void recorridoDFS(int indice, bool *visitados);
     void recorridoBFS(T vOrigen);
+    int prim(T vOrigen);
 };
 
 #include "Grafo.hxx"

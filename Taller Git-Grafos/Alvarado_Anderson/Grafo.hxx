@@ -154,7 +154,7 @@ void Grafo<T, C>::imprimirGrafo()
     cout << endl;
     for (int i = 0; i < cantVertices(); ++i)
     {
-        cout << vertices[i] << "-> ";
+        cout << vertices[i] << " -> ";
         vector<pair<int, C>> aux = aristas[i];
         for (int j = 0; j < aux.size(); j++)
         {
@@ -242,3 +242,119 @@ void Grafo<T, C>::recorridoBFS(T vOrigen)
     else
         cout << "El vertice no existe" << endl;
 }
+// algoritmo de prim
+template <class T, class C>
+int Grafo<T, C>::prim(T vOrigen)
+{
+    
+    int suma = 0;
+    int nodo = buscarVertice(vOrigen);
+    
+
+    if (nodo != -1)
+    {    
+        vector <bool> visitados;
+        visitados.resize(cantVertices());
+
+        struct compare {
+	        public: 
+	            bool operator()(pair<int, int> x, pair<int, int>y)
+                {
+                    return x.first > y.first;
+                }
+        };
+        priority_queue<pair<int, int>, vector <pair<int, int>>, compare> cola; //  costo,  indice vertice
+        cola.push({0,nodo});
+
+        while(!cola.empty())
+        {
+            pair<int, int> curr =  cola.top();
+            cola.pop();
+            if(!visitados[curr.second])
+            {
+                cout <<  "vertice: "<< vertices[curr.second] << ", peso: " << curr.first<<endl;
+
+                visitados[curr.second] = true;
+                suma += curr.first;
+
+                vector<pair<int, int>> aux = aristas[curr.second];
+                for(int j = 0; j<aux.size(); ++j)
+                {
+                    pair<int, C> temp = aux[j];
+                    cola.push({temp.second, temp.first});
+                }    
+            }   
+        }
+    }
+    else
+        cout << "El vertice no existe" << endl;
+
+    return suma;
+}
+// algoritmo de kruskal
+template <class T, class C>
+void Grafo<T, C>::kruskal()
+{
+    if(cantVertices()>0)
+    {
+        int cant = cantVertices(); // cantidad de arboles
+        int pos = 0; //posicion
+        vector <pair<int, pair <int,int>>> lista; // vector de aristas {a,{b,c}}: a = peso, b = v origen, c = v destino
+        
+        for(int i = 0; i<cantVertices(); i++) //llenar la lista de aristas
+        {
+            vector<pair<int, int>> aux = aristas[i];
+            for(int j = 0; j<aux.size(); j++)
+            {
+                pair<int, C> temp = aux[j];
+                lista.push_back ({temp.second,{i,temp.first}});
+            }
+        }
+        sort(lista.begin(),lista.end());// ordenar la lista por aristas segun el peso
+        /*for(int k =0; k< lista.size();k++ ){ // ver la lista de aristas ordenada por pesos
+            pair<int, pair <int,int>> curr = lista [k];
+            cout << "Peso: " << curr.first << ", arista: (" << curr.second.first << ", " << curr.second.second << ") " << endl;
+        }*/
+        vector <int> v; // vector con el arbol de recubrimiento minimo;
+        v.resize(cantVertices());
+        iniciar(v);
+
+        while(cant != 1 && pos < cantAristas())
+        {
+            pair<int, pair <int,int>> curr = lista [pos];
+            if(encontrar(v,curr.second.first) != encontrar(v,curr.second.second))
+            {
+                cout << "Peso: " << curr.first << ", arista: (" << curr.second.first << ", " << curr.second.second << ") " << endl;
+                unir(v, curr.second.first, curr.second.second);
+                cant--;
+            }
+            pos++;   
+        }
+    }    
+    else
+        cout << "El grafo no tiene ningun vertice" << endl;
+}
+//inicializar el vector que contiene el arbol de recubrimiento minimo
+template <class T, class C>
+void Grafo<T, C>::iniciar(vector<int> &v)
+{
+    for(int i = 0; i<cantVertices(); i++)
+        v[i] = i;  
+}
+//encontrar arbol
+template <class T, class C>
+int Grafo<T, C>::encontrar(vector <int> &v, int &a)
+{
+    if(a == v[a])
+        return a;
+
+    return v[a] = encontrar (v, v[a]);
+} 
+//unir dos arboles
+template <class T, class C>
+void Grafo<T, C>::unir(vector <int> &v,int &a, int &b)
+{
+    a = encontrar(v,a);
+    b = encontrar(v,b);
+    v[b] = a;
+}  

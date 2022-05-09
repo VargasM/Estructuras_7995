@@ -154,7 +154,7 @@ void Grafo<T, C>::imprimirGrafo()
     cout << endl;
     for (int i = 0; i < cantVertices(); ++i)
     {
-        cout << vertices[i] << "-> ";
+        cout << vertices[i] << " -> ";
         vector<pair<int, C>> aux = aristas[i];
         for (int j = 0; j < aux.size(); j++)
         {
@@ -244,7 +244,8 @@ void Grafo<T, C>::recorridoBFS(T vOrigen)
 }
 // algoritmo de prim
 template <class T, class C>
-int Grafo<T, C>::prim(T vOrigen){
+int Grafo<T, C>::prim(T vOrigen)
+{
     
     int suma = 0;
     int nodo = buscarVertice(vOrigen);
@@ -290,3 +291,70 @@ int Grafo<T, C>::prim(T vOrigen){
 
     return suma;
 }
+// algoritmo de kruskal
+template <class T, class C>
+void Grafo<T, C>::kruskal()
+{
+    if(cantVertices()>0)
+    {
+        int cant = cantVertices(); // cantidad de arboles
+        int pos = 0; //posicion
+        vector <pair<int, pair <int,int>>> lista; // vector de aristas {a,{b,c}}: a = peso, b = v origen, c = v destino
+        
+        for(int i = 0; i<cantVertices(); i++) //llenar la lista de aristas
+        {
+            vector<pair<int, int>> aux = aristas[i];
+            for(int j = 0; j<aux.size(); j++)
+            {
+                pair<int, C> temp = aux[j];
+                lista.push_back ({temp.second,{i,temp.first}});
+            }
+        }
+        sort(lista.begin(),lista.end());// ordenar la lista por aristas segun el peso
+        /*for(int k =0; k< lista.size();k++ ){ // ver la lista de aristas ordenada por pesos
+            pair<int, pair <int,int>> curr = lista [k];
+            cout << "Peso: " << curr.first << ", arista: (" << curr.second.first << ", " << curr.second.second << ") " << endl;
+        }*/
+        vector <int> v; // vector con el arbol de recubrimiento minimo;
+        v.resize(cantVertices());
+        iniciar(v);
+
+        while(cant != 1 && pos < cantAristas())
+        {
+            pair<int, pair <int,int>> curr = lista [pos];
+            if(encontrar(v,curr.second.first) != encontrar(v,curr.second.second))
+            {
+                cout << "Peso: " << curr.first << ", arista: (" << curr.second.first << ", " << curr.second.second << ") " << endl;
+                unir(v, curr.second.first, curr.second.second);
+                cant--;
+            }
+            pos++;   
+        }
+    }    
+    else
+        cout << "El grafo no tiene ningun vertice" << endl;
+}
+//inicializar el vector que contiene el arbol de recubrimiento minimo
+template <class T, class C>
+void Grafo<T, C>::iniciar(vector<int> &v)
+{
+    for(int i = 0; i<cantVertices(); i++)
+        v[i] = i;  
+}
+//encontrar arbol
+template <class T, class C>
+int Grafo<T, C>::encontrar(vector <int> &v, int &a)
+{
+    if(a == v[a])
+        return a;
+
+    return v[a] = encontrar (v, v[a]);
+} 
+//unir dos arboles
+template <class T, class C>
+void Grafo<T, C>::unir(vector <int> &v,int &a, int &b)
+{
+    a = encontrar(v,a);
+    b = encontrar(v,b);
+    v[b] = a;
+}  

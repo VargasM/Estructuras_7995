@@ -10,13 +10,14 @@
 #include <queue>
 #include <list>
 #include <stack>
+#include <algorithm> //sort
 using namespace std;
 
 template <class T, class C>
 class Grafo
 {
 protected:
-    vector<vector<pair<int, C>>> aristas;
+    vector<vector<pair<int, C>>> aristas; //{vertice destino, peso}
     vector<T> vertices;
 
 public:
@@ -34,6 +35,10 @@ public:
     void recorridoDFS(int indice, bool *visitados);
     void recorridoBFS(T vOrigen);
     int prim(T vOrigen);
+    void kruskal();
+    void iniciar(vector<int> &v);
+    int encontrar(vector <int> &v, int &a);
+    void unir(vector <int> &v,int &a, int &b);
 };
 
 #include "Grafo.hxx"

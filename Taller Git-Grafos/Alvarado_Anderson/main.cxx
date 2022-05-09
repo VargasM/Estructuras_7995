@@ -58,7 +58,7 @@ int main()
     g.insertarArista('H','B',0);
     g.insertarArista('I','F',0);*/
 
-    // Grafo Quiz Clase Prim
+    // Grafo Quiz Clase Prim, Kruskal y Djikstra
     Grafo<int, int> h;
     h.insertarVertice(0);
     h.insertarVertice(1);
@@ -78,6 +78,7 @@ int main()
     h.insertarArista(2,3,3);
     h.insertarArista(2,6,11);
     h.insertarArista(3,6,9);
+    h.insertarArista(4,5,4);
     h.insertarArista(4,6,20);
     h.insertarArista(4,7,5);
     h.insertarArista(5,2,1);
@@ -92,10 +93,10 @@ int main()
     
     cout << "\nGRAFO DEL TALLER" << endl;
     f.imprimirGrafo();// mostrar grafo
-    cout << "\nAlgoritmo de Prim desde C1" << endl<< endl;
+    /*cout << "\nAlgoritmo de Prim desde C1" << endl<< endl;
     int suma1 = f.prim("C1");
     cout << "\nSuma de pesos: " <<  suma1 << endl;
-    /*cout << "\nGRAFO DEL QUIZ CLASE DE RECORRIDOS" << endl;
+    cout << "\nGRAFO DEL QUIZ CLASE DE RECORRIDOS" << endl;
     g.imprimirGrafo();
     cout << "Cantidad de vertices: " << g.cantVertices() << endl;
     cout << "\nRECORRIDO Plano" << endl;
@@ -114,4 +115,9 @@ int main()
     cout << "\nAlgoritmo de Prim desde 0" << endl<< endl;
     int suma2 = h.prim(0);
     cout << "\nSuma de pesos: " <<  suma2 << endl;
+
+    cout << "\n\nGrafo clase Kruskal: " << endl;
+    h.imprimirGrafo();// mostrar grafo actual
+    cout << "\nAlgoritmo de Kruskal" << endl<< endl;
+    h.kruskal();
 }

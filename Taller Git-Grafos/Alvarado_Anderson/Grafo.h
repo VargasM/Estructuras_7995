@@ -10,6 +10,7 @@
 #include <queue>
 #include <list>
 #include <stack>
+#include <map>
 #include <algorithm> //sort
 using namespace std;
 
@@ -39,6 +40,7 @@ public:
     void iniciar(vector<int> &v);
     int encontrar(vector <int> &v, int &a);
     void unir(vector <int> &v,int &a, int &b);
+    void dijkstra(T vOrigen);
 };
 
 #include "Grafo.hxx"

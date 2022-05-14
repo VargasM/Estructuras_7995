@@ -357,4 +357,21 @@ void Grafo<T, C>::unir(vector <int> &v,int &a, int &b)
     a = encontrar(v,a);
     b = encontrar(v,b);
     v[b] = a;
-}  
+} 
+// algoritmo de Dijkstra
+template <class T, class C>
+void Grafo<T, C>::dijkstra(T vOrigen)
+{
+    int nodo = buscarVertice(vOrigen);
+
+    if (nodo != -1)
+    {    
+        map <T,map< T, int>> matriz; // matriz  de los caminos 
+        map <T,bool> visitados; // mapa de los vertices ya visitados
+        map <T,T> pred; // mapa de los predecesores del vertice
+        map <T,int> Q; // vertices pendientes por procesar
+        map <T,int> dist; //distancias minimas 
+    }
+    else
+        cout << "El vertice no existe" << endl;
+}

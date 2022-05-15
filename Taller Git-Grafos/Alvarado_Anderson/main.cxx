@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-    //Grafo Taller
+    /*Grafo Taller
     Grafo<string, int> f;
     f.insertarVertice("C1");
     f.insertarVertice("C2");
@@ -26,7 +26,7 @@ int main()
     f.insertarArista("C2","C4",2);
     f.insertarArista("C3","C1",3);
     f.insertarArista("C4","C2",5);
-    f.insertarArista("C4","C3",6);
+    f.insertarArista("C4","C3",6);*/
 
    /* //Grafo Clase Recorridos
     Grafo<char, int> g;
@@ -59,7 +59,7 @@ int main()
     g.insertarArista('I','F',0);*/
 
     // Grafo Quiz Clase Prim, Kruskal y Djikstra
-    Grafo<int, int> h;
+    /*Grafo<int, int> h;
     h.insertarVertice(0);
     h.insertarVertice(1);
     h.insertarVertice(2);
@@ -84,7 +84,24 @@ int main()
     h.insertarArista(5,2,1);
     h.insertarArista(5,6,13);
     h.insertarArista(7,2,7);
-    h.insertarArista(7,5,6);
+    h.insertarArista(7,5,6);*/
+
+    Grafo<char, int> g;
+    g.insertarVertice('s');
+    g.insertarVertice('t');
+    g.insertarVertice('x');
+    g.insertarVertice('y');
+    g.insertarVertice('z');
+    g.insertarArista('s','t',10);
+    g.insertarArista('s','y',5);
+    g.insertarArista('t','x',1);
+    g.insertarArista('t','y',2);
+    g.insertarArista('x','z',4);
+    g.insertarArista('y','x',9);
+    g.insertarArista('y','t',3);
+    g.insertarArista('y','z',2);
+    g.insertarArista('z','x',6);
+    g.insertarArista('z','s',7);
 
 
     cout << "======================================================================== " << endl;
@@ -92,7 +109,7 @@ int main()
     cout << "======================================================================== " << endl;
     
     cout << "\nGRAFO DEL TALLER" << endl;
-    f.imprimirGrafo();// mostrar grafo
+    g.imprimirGrafo();// mostrar grafo
     /*cout << "\nAlgoritmo de Prim desde C1" << endl<< endl;
     int suma1 = f.prim("C1");
     cout << "\nSuma de pesos: " <<  suma1 << endl;
@@ -110,7 +127,7 @@ int main()
     cout << "\n\nGrafo actual: " << endl;
     g.imprimirGrafo();// mostrar grafo actual*/
 
-    cout << "\n\nGrafo quiz clase Prim: " << endl;
+    /*cout << "\n\nGrafo quiz clase Prim: " << endl;
     h.imprimirGrafo();// mostrar grafo actual
     cout << "\nAlgoritmo de Prim desde 0" << endl<< endl;
     int suma2 = h.prim(0);
@@ -119,5 +136,26 @@ int main()
     cout << "\n\nGrafo clase Kruskal: " << endl;
     h.imprimirGrafo();// mostrar grafo actual
     cout << "\nAlgoritmo de Kruskal" << endl<< endl;
-    h.kruskal();
+    h.kruskal();*/
+    cout << "\n---------------------------------------------------";
+    cout << "\n\nRECORRIDO DIJKSTRA" << endl;
+    vector<int> dist;
+    vector<char> s;
+    vector<char> pred;
+    g.dijkstra(0,s,pred,dist);
+    cout << endl;
+    cout << "Vertices" << endl;
+    for (int i = 0; i < s.size(); i++){
+        cout << s[i]<<", ";
+    }
+    cout <<endl;
+    cout << "Predecesor" << endl;
+    for(int i = 0; i < dist.size(); ++i){
+        cout << dist[i] << ", ";
+    }
+    cout <<endl;
+    cout << "Peso conexiones" << endl;
+    for(int i = 0; i < pred.size(); ++i){
+        cout << pred[i] << ", ";
+    }
 }

@@ -4,43 +4,41 @@
 #ifndef __GRAFO__H__
 #define __GRAFO__H__
 
-#include <utility>
-#include <iostream>
 #include <vector>
-#include <queue>
-#include <list>
+#include <utility>
 #include <stack>
-#include <map>
-#include <algorithm> //sort
+#include <limits>
+#include <queue>
 using namespace std;
+
+typedef long long unsigned ll;
 
 template <class T, class C>
 class Grafo
 {
 protected:
-    vector<vector<pair<int, C>>> aristas; //{vertice destino, peso}
+    vector <vector<C>> matAristas;
     vector<T> vertices;
+    ll numVertices = 0;
 
 public:
-    int cantVertices();
-    int cantAristas();
-    int buscarVertice(T vertice);
-    bool insertarVertice(T Vertice);
+    int  cantiVertices();
+    int  cantiAristas();
+    void insertarVertice(T Vertice);
+    void insertarArista(T origen, T destino, C peso);
+    ll   buscarVertice(T vertice);
+    T    obtenerVertice(ll indice);
+    bool buscarArista(ll origen, ll destino);
     void eliminarVertice(T vertice);
-    bool insertarArista(T origen, T destino, C peso);
-    int buscarArista(int origen, int destino);
-    bool eliminarArista(T origen, T destino);
-    void imprimirGrafo();
+    void eliminarArista(T origen, T destino);
     void recorridoPlano();
+    void imprimirGrafo();
     void recorridoDFS(T inicio);
-    void recorridoDFS(int indice, bool *visitados);
-    void recorridoBFS(T vOrigen);
-    int prim(T vOrigen);
-    void kruskal();
-    void iniciar(vector<int> &v);
-    int encontrar(vector <int> &v, int &a);
-    void unir(vector <int> &v,int &a, int &b);
-    void dijkstra(T vOrigen);
+    void recorridoDFS(ll inicio, bool *visitados);
+    void recorridoBFS(T inicio);
+    void prim(T inicio,vector<T> &camino,vector<T> &predecesor ,vector<C> &pesos);
+    void menorPeso(vector<pair<int,int>> &vistos);
+    void dijkstra(T inicio, vector<T> &s, vector<T> &pred,  vector<C> &dist);
 };
 
 #include "Grafo.hxx"
